@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo 待办清单</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1 class="title">Todo</h1>
+      <p class="subtitle">记录今天要做的事</p>
+    </header>
+
+    <main class="main">
+      <form class="input-form" id="todoForm">
+        <input
+          type="text"
+          id="todoInput"
+          class="todo-input"
+          placeholder="添加新任务，按 Enter 确认..."
+          autocomplete="off"
+          maxlength="200"
+        >
+        <button type="submit" class="add-btn" aria-label="添加任务">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </form>
+
+      <div class="toolbar" id="toolbar" hidden>
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">全部</button>
+          <button class="filter-btn" data-filter="active">进行中</button>
+          <button class="filter-btn" data-filter="completed">已完成</button>
+        </div>
+        <button class="clear-btn" id="clearCompleted" hidden>清除已完成</button>
+      </div>
+
+      <ul class="todo-list" id="todoList"></ul>
+
+      <footer class="footer" id="footer" hidden>
+        <span id="itemCount">0 项待办</span>
+      </footer>
+    </main>
+
+    <p class="empty-hint" id="emptyHint">还没有任务，添加一条开始吧 ✨</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
