@@ -1,4 +1,6 @@
-export type Post = {
+import "server-only";
+
+export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
@@ -7,7 +9,7 @@ export type Post = {
   content: string[];
 };
 
-export const posts: Post[] = [
+const blogPosts: BlogPost[] = [
   {
     slug: "getting-started-with-nextjs",
     title: "从零开始使用 Next.js",
@@ -38,6 +40,22 @@ export const posts: Post[] = [
   },
 ];
 
-export function getPost(slug: string): Post | undefined {
-  return posts.find((post) => post.slug === slug);
+export type BlogCardData = Omit<BlogPost, "content">;
+
+export async function getMockBlogPosts(): Promise<BlogCardData[]> {
+  return blogPosts.map(({ slug, title, excerpt, date, tag }) => ({
+    slug,
+    title,
+    excerpt,
+    date,
+    tag,
+  }));
+}
+
+export async function getMockBlogPost(slug: string): Promise<BlogPost | undefined> {
+  return blogPosts.find((post) => post.slug === slug);
+}
+
+export function getMockBlogSlugs() {
+  return blogPosts.map((post) => ({ slug: post.slug }));
 }

@@ -48,6 +48,12 @@ export default function RootLayout({
                 首页
               </Link>
               <Link
+                href="/blog"
+                className="text-zinc-600 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                Blog
+              </Link>
+              <Link
                 href="/about"
                 className="text-zinc-600 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50"
               >
