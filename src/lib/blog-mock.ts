@@ -1,4 +1,5 @@
 import "server-only";
+import type { BlogCardData } from "@/src/types/blog";
 
 export type BlogPost = {
   slug: string;
@@ -6,6 +7,8 @@ export type BlogPost = {
   excerpt: string;
   date: string;
   tag: string;
+  coverImage: string;
+  coverImageAlt: string;
   content: string[];
 };
 
@@ -17,6 +20,9 @@ const blogPosts: BlogPost[] = [
       "了解 App Router、页面与布局的基本概念，快速搭起你的第一个 Next.js 应用。",
     date: "2026-07-10",
     tag: "入门",
+    coverImage:
+      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
+    coverImageAlt: "笔记本电脑上的代码编辑器",
     content: [
       "Next.js 是一个基于 React 的全栈框架。通过 App Router，你可以用文件夹结构直接定义路由：在 app 目录下创建 page.tsx，对应路径就会自动可用。",
       "一个典型的起步流程是：安装依赖、运行开发服务器，然后编辑 app/page.tsx。布局（layout.tsx）可以在多个页面之间共享导航、字体与全局样式，切换页面时布局状态也会被保留。",
@@ -31,6 +37,9 @@ const blogPosts: BlogPost[] = [
       "Server Components 如何减少客户端 JavaScript，以及在 Next.js 里如何合理划分服务端与客户端组件。",
     date: "2026-07-15",
     tag: "进阶",
+    coverImage:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    coverImageAlt: "屏幕上的程序代码",
     content: [
       "在 Next.js App Router 中，组件默认是 React Server Components。它们在服务端渲染，可以把数据请求、密钥与重量级逻辑留在服务器，只把必要的结果发送给浏览器。",
       "需要交互（例如点击、本地状态、浏览器 API）时，再把对应部分拆成 Client Components，并在文件顶部加上 \"use client\"。这样可以把客户端 JavaScript 体积控制在真正需要的范围内。",
@@ -40,16 +49,18 @@ const blogPosts: BlogPost[] = [
   },
 ];
 
-export type BlogCardData = Omit<BlogPost, "content">;
-
 export async function getMockBlogPosts(): Promise<BlogCardData[]> {
-  return blogPosts.map(({ slug, title, excerpt, date, tag }) => ({
-    slug,
-    title,
-    excerpt,
-    date,
-    tag,
-  }));
+  return blogPosts.map(
+    ({ slug, title, excerpt, date, tag, coverImage, coverImageAlt }) => ({
+      slug,
+      title,
+      excerpt,
+      date,
+      tag,
+      coverImage,
+      coverImageAlt,
+    }),
+  );
 }
 
 export async function getMockBlogPost(slug: string): Promise<BlogPost | undefined> {
